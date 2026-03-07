@@ -21,7 +21,8 @@ if (config.nodeEnv !== 'test') {
     })
   );
 
-  if (config.logging.filePath) {
+  // Enable file logging only in production
+  if (config.nodeEnv === 'production' && config.logging.filePath) {
     transports.push(
       new winston.transports.File({
         filename: config.logging.filePath,
