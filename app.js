@@ -31,6 +31,50 @@ app.use(requestLogger);
 // ─── Global Rate Limit ───────────────────────────────────────────────────────
 app.use(globalLimiter);
 
+// ─── Response serializer — renames _id → id, removes __v ─────────────────────
+// ─── Request ID + Response envelope ──────────────────────────────────────────────
+// Injects: timestamp, requestId, statusCode, status into every JSON response.
+// Also serialises _id → id (string), strips __v, strips null values, sets headers.
+app.use((req, res, next) => {
+  if (!req.requestId) {
+    req.requestId = req.headers['x-request-id'] || require('crypto').randomUUID();
+  }
+  res.setHeader('X-Request-ID', req.requestId);
+  const _json = res.json.bind(res);
+  res.json = function (body) {
+    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    if (body !== null && body !== undefined && typeof body === 'object' && !Array.isArray(body)) {
+      body.timestamp  = new Date().toISOString();
+      body.requestId  = req.requestId;
+      body.statusCode = res.statusCode;
+      body.status     = res.statusCode < 400 ? 'success' : 'error';
+    }
+    return _json(_cleanResponse(body));
+  };
+  next();
+});
+
+function _cleanResponse(val) {
+  if (val === null || val === undefined) return undefined;
+  if (typeof val !== 'object') return val;
+  if (val instanceof Date) return val;
+  if (Buffer.isBuffer(val)) return val;
+  if (Array.isArray(val)) return val.map(_cleanResponse).filter(v => v !== undefined);
+  const src = typeof val.toJSON === 'function' ? val.toJSON() : val;
+  if (typeof src !== 'object' || src === null) return src;
+  const out = {};
+  for (const key of Object.keys(src)) {
+    if (key === '__v' || key === '_id' || key === 'id' ||
+        key === 'isDeleted' || key === 'deletedAt' ||
+        key === 'created_by' || key === 'updated_by' || key === 'deleted_by') continue;
+    const v = _cleanResponse(src[key]);
+    if (v !== undefined) out[key] = v;
+  }
+  const rawId = src.id !== undefined ? src.id : src._id;
+  if (rawId !== undefined) out.id = String(rawId);
+  return out;
+}
+
 // ─── Routes ──────────────────────────────────────────────────────────────────
 const API_PREFIX = process.env.API_PREFIX || '/api/v1';
 app.use(API_PREFIX, routes);

@@ -17,6 +17,14 @@ const config = {
     jwtSecret: process.env.JWT_SECRET || '',
   },
 
+  // Tenant configuration.
+  // TENANCY_ENABLED=true  → x-tenant-id is enforced (or DEFAULT_TENANT_ID fallback).
+  // TENANCY_ENABLED=false → tenant is optional; service works without tenant scoping.
+  tenant: {
+    enabled: process.env.TENANCY_ENABLED === 'true',
+    defaultTenantId: process.env.DEFAULT_TENANT_ID ? process.env.DEFAULT_TENANT_ID.trim() : null,
+  },
+
   sms: {
     provider: process.env.SMS_PROVIDER || 'mock',
     fallback: process.env.SMS_PROVIDER_FALLBACK || '',
