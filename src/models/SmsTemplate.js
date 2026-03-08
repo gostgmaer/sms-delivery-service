@@ -16,6 +16,9 @@ const smsTemplateSchema = new mongoose.Schema({
   provider: String,
   tenantId: { type: String, index: true },
   isActive: { type: Boolean, default: true },
+  isDeleted: { type: Boolean, default: false },
+  deletedAt:  { type: Date, default: null },
+  deletedBy:  { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
   variables: [String],               // e.g. ['name', 'otp']
 }, {
   timestamps: true,

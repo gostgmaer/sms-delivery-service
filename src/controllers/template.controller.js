@@ -23,9 +23,10 @@ async function list(req, res, next) {
   try {
     const { page = 1, limit = 20 } = req.query;
     const skip = (page - 1) * limit;
+    const filter = { tenantId: req.tenantId, isDeleted: { $ne: true } };
     const [docs, total] = await Promise.all([
-      SmsTemplate.find({ tenantId: req.tenantId }).sort({ createdAt: -1 }).skip(skip).limit(Number(limit)).lean(),
-      SmsTemplate.countDocuments({ tenantId: req.tenantId }),
+      SmsTemplate.find(filter).sort({ createdAt: -1 }).skip(skip).limit(Number(limit)).lean(),
+      SmsTemplate.countDocuments(filter),
     ]);
     res.json({ success: true, data: docs, pagination: { total, page: Number(page), limit: Number(limit), pages: Math.ceil(total / limit) } });
   } catch (err) { next(err); }
@@ -33,7 +34,7 @@ async function list(req, res, next) {
 
 async function getById(req, res, next) {
   try {
-    const tpl = await SmsTemplate.findOne({ _id: req.params.templateId, tenantId: req.tenantId }).lean();
+    const tpl = await SmsTemplate.findOne({ _id: req.params.templateId, tenantId: req.tenantId, isDeleted: { $ne: true } }).lean();
     if (!tpl) throw new AppError('Template not found', 404);
     res.json({ success: true, data: tpl });
   } catch (err) { next(err); }
@@ -44,7 +45,7 @@ async function update(req, res, next) {
     const update = { ...req.body };
     if (update.body) update.variables = extractVariables(update.body);
     const tpl = await SmsTemplate.findOneAndUpdate(
-      { _id: req.params.templateId, tenantId: req.tenantId },
+      { _id: req.params.templateId, tenantId: req.tenantId, isDeleted: { $ne: true } },
       { $set: update },
       { new: true, runValidators: true },
     );
@@ -55,7 +56,11 @@ async function update(req, res, next) {
 
 async function remove(req, res, next) {
   try {
-    const tpl = await SmsTemplate.findOneAndDelete({ _id: req.params.templateId, tenantId: req.tenantId });
+    const tpl = await SmsTemplate.findOneAndUpdate(
+      { _id: req.params.templateId, tenantId: req.tenantId, isDeleted: { $ne: true } },
+      { $set: { isDeleted: true, isActive: false, deletedAt: new Date(), deletedBy: req.user?._id || null } },
+      { new: true }
+    );
     if (!tpl) throw new AppError('Template not found', 404);
     res.json({ success: true, data: { deleted: true } });
   } catch (err) { next(err); }
