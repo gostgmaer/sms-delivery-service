@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "debug": "node --inspect=9233 index.js",
+    "debug:dev": "nodemon --inspect=9233 index.js",
     "test": "jest --runInBand --forceExit",
     "test:coverage": "jest --coverage --runInBand --forceExit",
     "lint": "eslint src/**/*.js"
