@@ -6,8 +6,26 @@ const { extractVariables } = require('../utils/templateEngine');
 
 async function create(req, res, next) {
   try {
-    const existing = await SmsTemplate.findOne({ name: req.body.name, tenantId: req.tenantId });
-    if (existing) throw new AppError(`Template '${req.body.name}' already exists`, 409);
+    // Auto-generate code from name if not provided
+    if (!req.body.code) {
+      req.body.code = req.body.name
+        .toUpperCase()
+        .replace(/[^A-Z0-9]+/g, '_')
+        .replace(/^_+|_+$/g, ''); // Remove leading/trailing underscores
+    }
+    
+    // Check for existing template by code or name
+    const existing = await SmsTemplate.findOne({ 
+      $or: [
+        { code: req.body.code, tenantId: req.tenantId },
+        { name: req.body.name, tenantId: req.tenantId }
+      ]
+    });
+    
+    if (existing) {
+      const field = existing.code === req.body.code ? 'code' : 'name';
+      throw new AppError(`Template with ${field} '${existing[field]}' already exists`, 409);
+    }
 
     const variables = extractVariables(req.body.body);
     const template = await SmsTemplate.create({

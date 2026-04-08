@@ -33,10 +33,22 @@ const sendBulkRules = [
     .optional()
     .isMongoId()
     .withMessage('templateId must be a valid ObjectId'),
+  body('templateCode')
+    .optional()
+    .trim()
+    .isLength({ min: 2, max: 100 })
+    .withMessage('templateCode must be 2-100 characters')
+    .matches(/^[A-Z0-9_]+$/i)
+    .withMessage('templateCode must contain only letters, numbers, and underscores'),
+  body('templateName')
+    .optional()
+    .trim()
+    .isLength({ min: 2, max: 100 })
+    .withMessage('templateName must be 2-100 characters'),
   body()
     .custom((val) => {
-      if (!val.message && !val.templateId) {
-        throw new Error('Either "message" or "templateId" is required at top level or per-recipient');
+      if (!val.message && !val.templateId && !val.templateCode && !val.templateName) {
+        throw new Error('Either "message", "templateId", "templateCode", or "templateName" is required at top level or per-recipient');
       }
       return true;
     }),

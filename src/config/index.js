@@ -22,6 +22,9 @@ const config = {
 		defaultTenantId: process.env.DEFAULT_TENANT_ID ? process.env.DEFAULT_TENANT_ID.trim() : null,
 	},
 
+	// Auto-import templates on startup (default: true)
+	autoImportTemplates: process.env.AUTO_IMPORT_TEMPLATES !== 'false',
+
 	sms: {
 		provider: process.env.SMS_PROVIDER || "mock",
 		fallback: process.env.SMS_PROVIDER_FALLBACK || "",

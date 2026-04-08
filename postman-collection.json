@@ -1,0 +1,603 @@
+{
+  "info": {
+    "name": "SMS Delivery Service",
+    "description": "Production-grade SMS delivery microservice with 33 provider integrations and 103 ready-to-use templates",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "your-api-key-here",
+      "type": "string"
+    },
+    {
+      "key": "tenantId",
+      "value": "default",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{apiKey}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        },
+        "description": "Check service health status"
+      }
+    },
+    {
+      "name": "SMS Operations",
+      "item": [
+        {
+          "name": "Send Simple SMS",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"+919876543210\",\n  \"message\": \"Your order #ORD123 has been confirmed! Expected delivery: Dec 25, 2024\",\n  \"messageType\": \"TRANSACTIONAL\",\n  \"from\": \"MYAPP\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sms/send",
+              "host": ["{{baseUrl}}"],
+              "path": ["sms", "send"]
+            },
+            "description": "Send a simple SMS without using a template"
+          }
+        },
+        {
+          "name": "Send SMS with Template (by Name)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"+919876543210\",\n  \"templateName\": \"Order Confirmation\",\n  \"variables\": {\n    \"orderId\": \"ORD123\",\n    \"deliveryDate\": \"Dec 25, 2024\",\n    \"trackingUrl\": \"https://track.example.com/ORD123\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sms/send",
+              "host": ["{{baseUrl}}"],
+              "path": ["sms", "send"]
+            },
+            "description": "Send SMS using template name (most convenient - just use the exact template name)"
+          }
+        },
+        {
+          "name": "Send SMS with Template (by Code)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"+919876543210\",\n  \"templateCode\": \"ORDER_CONFIRMATION\",\n  \"variables\": {\n    \"orderId\": \"ORD123\",\n    \"deliveryDate\": \"Dec 25, 2024\",\n    \"trackingUrl\": \"https://track.example.com/ORD123\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sms/send",
+              "host": ["{{baseUrl}}"],
+              "path": ["sms", "send"]
+            },
+            "description": "Send SMS using template code (recommended for production - environment-independent)"
+          }
+        },
+        {
+          "name": "Send SMS with Template (by ID)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"+919876543210\",\n  \"templateId\": \"661234567890abcdef123456\",\n  \"variables\": {\n    \"orderId\": \"ORD123\",\n    \"deliveryDate\": \"Dec 25, 2024\",\n    \"trackingUrl\": \"https://track.example.com/ORD123\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sms/send",
+              "host": ["{{baseUrl}}"],
+              "path": ["sms", "send"]
+            },
+            "description": "Send SMS using template ID (backward compatible - MongoDB ObjectID)"
+          }
+        },
+        {
+          "name": "Send OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"+919876543210\",\n  \"channel\": \"SMS\",\n  \"otpLength\": 6,\n  \"expiryMinutes\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sms/send-otp",
+              "host": ["{{baseUrl}}"],
+              "path": ["sms", "send-otp"]
+            },
+            "description": "Generate and send OTP code"
+          }
+        },
+        {
+          "name": "Verify OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"to\": \"+919876543210\",\n  \"otp\": \"847659\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sms/verify-otp",
+              "host": ["{{baseUrl}}"],
+              "path": ["sms", "verify-otp"]
+            },
+            "description": "Verify OTP code entered by user"
+          }
+        },
+        {
+          "name": "Send Bulk SMS",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": [\n    {\n      \"to\": \"+919876543210\",\n      \"variables\": { \"userName\": \"John\", \"orderId\": \"ORD001\" }\n    },\n    {\n      \"to\": \"+919876543211\",\n      \"variables\": { \"userName\": \"Mary\", \"orderId\": \"ORD002\" }\n    },\n    {\n      \"to\": \"+919876543212\",\n      \"variables\": { \"userName\": \"Bob\", \"orderId\": \"ORD003\" }\n    }\n  ],\n  \"templateCode\": \"ORDER_CONFIRMATION\",\n  \"messageType\": \"TRANSACTIONAL\",\n  \"batchSize\": 50\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sms/send-bulk",
+              "host": ["{{baseUrl}}"],
+              "path": ["sms", "send-bulk"]
+            },
+            "description": "Send SMS to multiple recipients using template code (recommended for production)"
+          }
+        },
+        {
+          "name": "Send Bulk SMS (with Message)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": [\n    {\n      \"to\": \"+919876543210\",\n      \"message\": \"Hi John! Your order ORD001 is ready for pickup.\"\n    },\n    {\n      \"to\": \"+919876543211\",\n      \"message\": \"Hi Mary! Your order ORD002 has been shipped.\"\n    },\n    {\n      \"to\": \"+919876543212\",\n      \"message\": \"Hi Bob! Your order ORD003 is out for delivery.\"\n    }\n  ],\n  \"messageType\": \"TRANSACTIONAL\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sms/send-bulk",
+              "host": ["{{baseUrl}}"],
+              "path": ["sms", "send-bulk"]
+            },
+            "description": "Send SMS to multiple recipients with individual messages (no template)"
+          }
+        },
+        {
+          "name": "Send Bulk SMS (with Template Name)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": [\n    {\n      \"to\": \"+919876543210\",\n      \"variables\": { \"customerName\": \"John\", \"provider\": \"ABC Services\", \"arrivalTime\": \"3:00 PM\" }\n    },\n    {\n      \"to\": \"+919876543211\",\n      \"variables\": { \"customerName\": \"Mary\", \"provider\": \"XYZ Services\", \"arrivalTime\": \"4:00 PM\" }\n    }\n  ],\n  \"templateName\": \"Provider Arrived\",\n  \"messageType\": \"TRANSACTIONAL\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sms/send-bulk",
+              "host": ["{{baseUrl}}"],
+              "path": ["sms", "send-bulk"]
+            },
+            "description": "Send bulk SMS using template name (convenient for dev/testing)"
+          }
+        },
+        {
+          "name": "Send Bulk SMS (Shared Message)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipients\": [\n    { \"to\": \"+919876543210\" },\n    { \"to\": \"+919876543211\" },\n    { \"to\": \"+919876543212\" }\n  ],\n  \"message\": \"Flash Sale! Get 50% off on all products today. Visit: https://example.com/sale\",\n  \"messageType\": \"PROMOTIONAL\",\n  \"campaignName\": \"Flash Sale Campaign\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sms/send-bulk",
+              "host": ["{{baseUrl}}"],
+              "path": ["sms", "send-bulk"]
+            },
+            "description": "Send same message to all recipients (promotional campaign)"
+          }
+        },
+        {
+          "name": "List Messages",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sms?status=DELIVERED&messageType=TRANSACTIONAL&limit=10&page=1&sortBy=createdAt&order=desc",
+              "host": ["{{baseUrl}}"],
+              "path": ["sms"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "DELIVERED"
+                },
+                {
+                  "key": "messageType",
+                  "value": "TRANSACTIONAL"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "createdAt"
+                },
+                {
+                  "key": "order",
+                  "value": "desc"
+                }
+              ]
+            },
+            "description": "List all messages with optional filters"
+          }
+        },
+        {
+          "name": "Get Message by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sms/msg_xyz789",
+              "host": ["{{baseUrl}}"],
+              "path": ["sms", "msg_xyz789"]
+            },
+            "description": "Get details of a specific message"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Templates",
+      "item": [
+        {
+          "name": "Create Template",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Order Confirmation Custom\",\n  \"body\": \"Hi {{customerName}}! Your order {{orderId}} worth {{amount}} has been confirmed. Delivery by {{deliveryDate}}.\",\n  \"category\": \"TRANSACTIONAL\",\n  \"variables\": [\"customerName\", \"orderId\", \"amount\", \"deliveryDate\"],\n  \"isActive\": true,\n  \"dltTemplateId\": \"1234567890123456\",\n  \"dltEntityId\": \"1234567890\",\n  \"metadata\": {\n    \"useCase\": \"E-commerce order confirmation\",\n    \"department\": \"Sales\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/templates",
+              "host": ["{{baseUrl}}"],
+              "path": ["templates"]
+            },
+            "description": "Create a new SMS template"
+          }
+        },
+        {
+          "name": "List Templates",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/templates?category=TRANSACTIONAL&isActive=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["templates"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "TRANSACTIONAL"
+                },
+                {
+                  "key": "isActive",
+                  "value": "true"
+                }
+              ]
+            },
+            "description": "List all SMS templates"
+          }
+        },
+        {
+          "name": "Get Template by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/templates/661234567890abcdef123456",
+              "host": ["{{baseUrl}}"],
+              "path": ["templates", "661234567890abcdef123456"]
+            },
+            "description": "Get a specific template by ID"
+          }
+        },
+        {
+          "name": "Update Template",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"Updated: Hi {{customerName}}! Your order {{orderId}} has been confirmed.\",\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/templates/661234567890abcdef123456",
+              "host": ["{{baseUrl}}"],
+              "path": ["templates", "661234567890abcdef123456"]
+            },
+            "description": "Update an existing template"
+          }
+        },
+        {
+          "name": "Delete Template",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/templates/661234567890abcdef123456",
+              "host": ["{{baseUrl}}"],
+              "path": ["templates", "661234567890abcdef123456"]
+            },
+            "description": "Delete a template"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Analytics Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/summary?from=2026-04-01T00:00:00.000Z&to=2026-04-08T23:59:59.999Z",
+              "host": ["{{baseUrl}}"],
+              "path": ["analytics", "summary"],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "2026-04-01T00:00:00.000Z"
+                },
+                {
+                  "key": "to",
+                  "value": "2026-04-08T23:59:59.999Z"
+                }
+              ]
+            },
+            "description": "Get message statistics summary for a date range"
+          }
+        },
+        {
+          "name": "Provider Health",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/provider-health",
+              "host": ["{{baseUrl}}"],
+              "path": ["analytics", "provider-health"]
+            },
+            "description": "Check health and performance of SMS providers"
+          }
+        },
+        {
+          "name": "List Campaigns",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/campaigns",
+              "host": ["{{baseUrl}}"],
+              "path": ["analytics", "campaigns"]
+            },
+            "description": "List all SMS campaigns"
+          }
+        },
+        {
+          "name": "Get Campaign Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/campaigns/camp_abc123def456",
+              "host": ["{{baseUrl}}"],
+              "path": ["analytics", "campaigns", "camp_abc123def456"]
+            },
+            "description": "Get details of a specific campaign"
+          }
+        },
+        {
+          "name": "Campaign Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-Tenant-Id",
+                "value": "{{tenantId}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/campaigns/camp_abc123def456/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["analytics", "campaigns", "camp_abc123def456", "stats"]
+            },
+            "description": "Get statistics for a campaign"
+          }
+        }
+      ]
+    }
+  ]
+}

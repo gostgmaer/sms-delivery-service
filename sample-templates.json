@@ -1,0 +1,1226 @@
+[
+  {
+    "name": "OTP Verification",
+    "body": "Your OTP is {{otp}}. Valid for {{expiry}} minutes. Do not share this code with anyone.",
+    "category": "OTP",
+    "variables": ["otp", "expiry"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Account verification, login, transaction confirmation"
+    }
+  },
+  {
+    "name": "Welcome Message",
+    "body": "Welcome to {{appName}}, {{userName}}! Thank you for signing up. We're excited to have you onboard.",
+    "category": "PROMOTIONAL",
+    "variables": ["appName", "userName"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "New user registration welcome"
+    }
+  },
+  {
+    "name": "Order Confirmation",
+    "body": "Order {{orderId}} confirmed! Your order will be delivered by {{deliveryDate}}. Track: {{trackingUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["orderId", "deliveryDate", "trackingUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "E-commerce order confirmation"
+    }
+  },
+  {
+    "name": "Order Shipped",
+    "body": "Great news! Your order {{orderId}} has been shipped and will arrive by {{expectedDate}}. Tracking: {{trackingNumber}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["orderId", "expectedDate", "trackingNumber"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Order shipment notification"
+    }
+  },
+  {
+    "name": "Order Delivered",
+    "body": "Your order {{orderId}} has been delivered. Thank you for shopping with {{storeName}}!",
+    "category": "TRANSACTIONAL",
+    "variables": ["orderId", "storeName"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Delivery confirmation"
+    }
+  },
+  {
+    "name": "Appointment Reminder",
+    "body": "Reminder: Your appointment with {{providerName}} is scheduled for {{appointmentDate}} at {{appointmentTime}}. Reply CANCEL to reschedule.",
+    "category": "TRANSACTIONAL",
+    "variables": ["providerName", "appointmentDate", "appointmentTime"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Appointment reminders for healthcare, salons, services"
+    }
+  },
+  {
+    "name": "Payment Received",
+    "body": "Payment of {{amount}} {{currency}} received for invoice {{invoiceNumber}}. Thank you! Receipt: {{receiptUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["amount", "currency", "invoiceNumber", "receiptUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Payment confirmation"
+    }
+  },
+  {
+    "name": "Password Reset",
+    "body": "Reset your password using code: {{resetCode}}. Valid for {{expiry}} minutes. If you didn't request this, please ignore.",
+    "category": "TRANSACTIONAL",
+    "variables": ["resetCode", "expiry"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Password reset request"
+    }
+  },
+  {
+    "name": "Account Alert",
+    "body": "Alert: {{alertType}} detected on your account at {{timestamp}}. If this wasn't you, contact support immediately.",
+    "category": "TRANSACTIONAL",
+    "variables": ["alertType", "timestamp"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Security alerts, suspicious activity"
+    }
+  },
+  {
+    "name": "Booking Confirmation",
+    "body": "Booking confirmed for {{serviceName}} on {{bookingDate}}. Booking ID: {{bookingId}}. See you soon!",
+    "category": "TRANSACTIONAL",
+    "variables": ["serviceName", "bookingDate", "bookingId"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service booking confirmation"
+    }
+  },
+  {
+    "name": "Subscription Renewal",
+    "body": "Your {{planName}} subscription will renew on {{renewalDate}} for {{amount}}. Manage subscription: {{url}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["planName", "renewalDate", "amount", "url"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Subscription renewal reminder"
+    }
+  },
+  {
+    "name": "Low Balance Alert",
+    "body": "Your account balance is low ({{balance}}). Please recharge to continue using our services. Recharge now: {{rechargeUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["balance", "rechargeUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Balance alerts for prepaid services"
+    }
+  },
+  {
+    "name": "Flash Sale",
+    "body": "FLASH SALE! Get {{discount}}% off on {{productCategory}}. Use code: {{couponCode}}. Valid till {{expiryTime}}. Shop now: {{shopUrl}}",
+    "category": "PROMOTIONAL",
+    "variables": ["discount", "productCategory", "couponCode", "expiryTime", "shopUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Limited time promotions"
+    }
+  },
+  {
+    "name": "Feedback Request",
+    "body": "Hi {{customerName}}, how was your experience with {{serviceName}}? Rate us: {{feedbackUrl}}. Your feedback helps us improve!",
+    "category": "TRANSACTIONAL",
+    "variables": ["customerName", "serviceName", "feedbackUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Customer feedback collection"
+    }
+  },
+  {
+    "name": "Service Provider Match",
+    "body": "Good news! {{providerName}} is available for your {{serviceType}} request. Estimated arrival: {{eta}}. Track: {{trackingUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["providerName", "serviceType", "eta", "trackingUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Local service marketplace provider matching"
+    }
+  },
+  {
+    "name": "Two-Factor Authentication",
+    "body": "Your {{appName}} verification code is {{code}}. This code expires in {{expiry}} minutes. Never share this with anyone.",
+    "category": "OTP",
+    "variables": ["appName", "code", "expiry"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "2FA login verification"
+    }
+  },
+  {
+    "name": "Order Out for Delivery",
+    "body": "Your order {{orderId}} is out for delivery! Expected arrival: {{timeWindow}}. Our delivery partner {{driverName}} is on the way ({{phone}}).",
+    "category": "TRANSACTIONAL",
+    "variables": ["orderId", "timeWindow", "driverName", "phone"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Last mile delivery notification"
+    }
+  },
+  {
+    "name": "Failed Delivery Attempt",
+    "body": "We attempted to deliver order {{orderId}} but no one was available. Next attempt: {{nextAttemptDate}}. Reschedule: {{rescheduleUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["orderId", "nextAttemptDate", "rescheduleUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Failed delivery notification"
+    }
+  },
+  {
+    "name": "Return Initiated",
+    "body": "Your return request for order {{orderId}} has been approved. Return ID: {{returnId}}. Pickup scheduled on {{pickupDate}}.",
+    "category": "TRANSACTIONAL",
+    "variables": ["orderId", "returnId", "pickupDate"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Product return confirmation"
+    }
+  },
+  {
+    "name": "Refund Processed",
+    "body": "Refund of {{amount}} {{currency}} for order {{orderId}} has been processed. It will reflect in your account within {{businessDays}} business days.",
+    "category": "TRANSACTIONAL",
+    "variables": ["amount", "currency", "orderId", "businessDays"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Refund confirmation"
+    }
+  },
+  {
+    "name": "Account Created",
+    "body": "Your {{appName}} account has been created successfully! Username: {{username}}. Login at {{loginUrl}} to get started.",
+    "category": "TRANSACTIONAL",
+    "variables": ["appName", "username", "loginUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Account creation confirmation"
+    }
+  },
+  {
+    "name": "Account Suspended",
+    "body": "Your account has been temporarily suspended due to {{reason}}. Contact support at {{supportContact}} to resolve this issue.",
+    "category": "TRANSACTIONAL",
+    "variables": ["reason", "supportContact"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Account suspension notification"
+    }
+  },
+  {
+    "name": "Invoice Generated",
+    "body": "Invoice {{invoiceNumber}} for {{amount}} {{currency}} is now available. Due date: {{dueDate}}. View: {{invoiceUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["invoiceNumber", "amount", "currency", "dueDate", "invoiceUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Invoice notification"
+    }
+  },
+  {
+    "name": "Payment Overdue",
+    "body": "Reminder: Invoice {{invoiceNumber}} of {{amount}} was due on {{dueDate}}. Please make payment to avoid service interruption. Pay: {{paymentUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["invoiceNumber", "amount", "dueDate", "paymentUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Payment reminder"
+    }
+  },
+  {
+    "name": "Event Reminder",
+    "body": "Reminder: {{eventName}} starts {{startTime}}. Location: {{venue}}. Your ticket: {{ticketId}}. See you there!",
+    "category": "TRANSACTIONAL",
+    "variables": ["eventName", "startTime", "venue", "ticketId"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Event attendance reminder"
+    }
+  },
+  {
+    "name": "Support Ticket Created",
+    "body": "Your support ticket #{{ticketId}} has been created. Our team will respond within {{responseTime}}. Track: {{ticketUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["ticketId", "responseTime", "ticketUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Support ticket confirmation"
+    }
+  },
+  {
+    "name": "Support Ticket Resolved",
+    "body": "Your ticket #{{ticketId}} has been resolved. If you need further assistance, reply REOPEN or contact us at {{supportContact}}.",
+    "category": "TRANSACTIONAL",
+    "variables": ["ticketId", "supportContact"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Ticket resolution notification"
+    }
+  },
+  {
+    "name": "Cancellation Confirmed",
+    "body": "Your {{itemType}} {{itemId}} has been cancelled. Refund of {{refundAmount}} will be processed within {{refundDays}} days.",
+    "category": "TRANSACTIONAL",
+    "variables": ["itemType", "itemId", "refundAmount", "refundDays"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Order/booking cancellation"
+    }
+  },
+  {
+    "name": "Loyalty Points Earned",
+    "body": "Congratulations! You earned {{points}} points on your recent purchase. Total points: {{totalPoints}}. Redeem: {{redeemUrl}}",
+    "category": "PROMOTIONAL",
+    "variables": ["points", "totalPoints", "redeemUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Loyalty program updates"
+    }
+  },
+  {
+    "name": "Trial Expiring Soon",
+    "body": "Your {{planName}} trial ends in {{daysLeft}} days. Upgrade now to continue enjoying premium features: {{upgradeUrl}}",
+    "category": "PROMOTIONAL",
+    "variables": ["planName", "daysLeft", "upgradeUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Trial expiration reminder"
+    }
+  },
+  {
+    "name": "Cart Abandonment",
+    "body": "You left {{itemCount}} items in your cart! Complete your purchase now and get {{discount}}% off. Use code: {{couponCode}}. Shop: {{cartUrl}}",
+    "category": "PROMOTIONAL",
+    "variables": ["itemCount", "discount", "couponCode", "cartUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Abandoned cart recovery"
+    }
+  },
+  {
+    "name": "Referral Reward",
+    "body": "Great news! Your friend {{friendName}} joined using your referral. You've earned {{reward}}! Refer more: {{referralUrl}}",
+    "category": "PROMOTIONAL",
+    "variables": ["friendName", "reward", "referralUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Referral program rewards"
+    }
+  },
+  {
+    "name": "Birthday Wishes",
+    "body": "Happy Birthday {{customerName}}! 🎉 Celebrate with {{discount}}% off on your next purchase. Use code: {{couponCode}}. Valid till {{expiryDate}}.",
+    "category": "PROMOTIONAL",
+    "variables": ["customerName", "discount", "couponCode", "expiryDate"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Birthday promotions"
+    }
+  },
+  {
+    "name": "Scheduled Maintenance",
+    "body": "Scheduled maintenance on {{maintenanceDate}} from {{startTime}} to {{endTime}}. Services may be temporarily unavailable. Sorry for the inconvenience!",
+    "category": "TRANSACTIONAL",
+    "variables": ["maintenanceDate", "startTime", "endTime"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Maintenance notification"
+    }
+  },
+  {
+    "name": "Emergency Alert",
+    "body": "URGENT: {{alertMessage}}. Immediate action required. For more details: {{detailsUrl}} or call {{emergencyContact}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["alertMessage", "detailsUrl", "emergencyContact"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Emergency notifications"
+    }
+  },
+  {
+    "name": "Document Upload Required",
+    "body": "Action required: Upload {{documentType}} to verify your account. Deadline: {{deadline}}. Upload now: {{uploadUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["documentType", "deadline", "uploadUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "KYC document requests"
+    }
+  },
+  {
+    "name": "Verification Successful",
+    "body": "Your {{verificationType}} has been verified successfully! You can now access {{feature}}. Get started: {{dashboardUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["verificationType", "feature", "dashboardUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Verification completion"
+    }
+  },
+  {
+    "name": "Waitlist Confirmation",
+    "body": "You're on the waitlist for {{productName}}! Position: {{position}}. We'll notify you when it's your turn. Stay tuned!",
+    "category": "TRANSACTIONAL",
+    "variables": ["productName", "position"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Waitlist registration"
+    }
+  },
+  {
+    "name": "Back in Stock",
+    "body": "Good news! {{productName}} is back in stock. Grab it before it's gone: {{productUrl}}. Limited quantity available!",
+    "category": "PROMOTIONAL",
+    "variables": ["productName", "productUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Stock alert notifications"
+    }
+  },
+  {
+    "name": "Price Drop Alert",
+    "body": "Price dropped! {{productName}} is now {{newPrice}} (was {{oldPrice}}). Save {{savings}}! Buy now: {{productUrl}}",
+    "category": "PROMOTIONAL",
+    "variables": ["productName", "newPrice", "oldPrice", "savings", "productUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Price drop notifications"
+    }
+  },
+  {
+    "name": "Webinar Registration",
+    "body": "You're registered for {{webinarTitle}} on {{webinarDate}} at {{webinarTime}}. Join link will be sent 15 mins before. Add to calendar: {{calendarUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["webinarTitle", "webinarDate", "webinarTime", "calendarUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Webinar registration confirmation"
+    }
+  },
+  {
+    "name": "Session Timeout Warning",
+    "body": "Security alert: Your session will expire in {{minutes}} minutes due to inactivity. Login again at {{loginUrl}} to continue.",
+    "category": "TRANSACTIONAL",
+    "variables": ["minutes", "loginUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Session timeout warning"
+    }
+  },
+  {
+    "name": "New Login Detected",
+    "body": "New login detected from {{device}} in {{location}} at {{timestamp}}. If this wasn't you, secure your account: {{securityUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["device", "location", "timestamp", "securityUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Login notification for security"
+    }
+  },
+  {
+    "name": "Reward Unlocked",
+    "body": "🎁 Congratulations! You've unlocked {{rewardName}}. Use code {{rewardCode}} at checkout. Valid till {{expiryDate}}.",
+    "category": "PROMOTIONAL",
+    "variables": ["rewardName", "rewardCode", "expiryDate"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Gamification rewards"
+    }
+  },
+  {
+    "name": "Prescription Reminder",
+    "body": "Time to refill your prescription for {{medication}}. Order now for delivery by {{deliveryDate}}: {{orderUrl}} or call {{pharmacyPhone}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["medication", "deliveryDate", "orderUrl", "pharmacyPhone"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Healthcare prescription refills"
+    }
+  },
+  {
+    "name": "Shipment Delayed",
+    "body": "Your order {{orderId}} is delayed due to {{reason}}. New estimated delivery: {{newDate}}. Track: {{trackingUrl}} Sorry for the inconvenience.",
+    "category": "TRANSACTIONAL",
+    "variables": ["orderId", "reason", "newDate", "trackingUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Shipping delay notification"
+    }
+  },
+  {
+    "name": "Survey Request",
+    "body": "Help us improve! Take our {{surveyType}} survey (2 mins) and get {{incentive}}. Start: {{surveyUrl}} Your feedback matters!",
+    "category": "TRANSACTIONAL",
+    "variables": ["surveyType", "incentive", "surveyUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Customer surveys"
+    }
+  },
+  {
+    "name": "Subscription Cancelled",
+    "body": "Your {{planName}} subscription has been cancelled. Access continues until {{endDate}}. Change your mind? Reactivate: {{reactivateUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["planName", "endDate", "reactivateUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Subscription cancellation confirmation"
+    }
+  },
+  {
+    "name": "Exclusive Offer",
+    "body": "Exclusive for you! Get {{productName}} at {{discount}}% off. Limited stock remaining. Use code: {{couponCode}}. Shop: {{offerUrl}}",
+    "category": "PROMOTIONAL",
+    "variables": ["productName", "discount", "couponCode", "offerUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Personalized offers"
+    }
+  },
+  {
+    "name": "Service Completed",
+    "body": "{{providerName}} has marked your {{serviceType}} service as completed. Total: {{amount}}. Rate your experience: {{ratingUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["providerName", "serviceType", "amount", "ratingUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service completion in marketplace"
+    }
+  },
+  {
+    "name": "Quote Ready",
+    "body": "Your quote for {{serviceType}} is ready! Estimated cost: {{estimatedCost}}. Valid for {{validityDays}} days. View details: {{quoteUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["serviceType", "estimatedCost", "validityDays", "quoteUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service quotation delivery"
+    }
+  },
+  {
+    "name": "Payment Failed",
+    "body": "Payment of {{amount}} failed for {{itemDescription}}. Reason: {{failureReason}}. Retry payment: {{retryUrl}} or contact support.",
+    "category": "TRANSACTIONAL",
+    "variables": ["amount", "itemDescription", "failureReason", "retryUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Failed payment notification"
+    }
+  },
+  {
+    "name": "Service Request Received",
+    "body": "Your {{serviceType}} request has been received (Request ID: {{requestId}}). We're finding the best provider for you. Track: {{trackingUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["serviceType", "requestId", "trackingUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service marketplace - Initial request confirmation"
+    }
+  },
+  {
+    "name": "Provider On The Way",
+    "body": "{{providerName}} is on the way to your location! ETA: {{eta}} minutes. Contact: {{providerPhone}}. Track live: {{trackingUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["providerName", "eta", "providerPhone", "trackingUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service marketplace - Provider en route"
+    }
+  },
+  {
+    "name": "Provider Arrived",
+    "body": "{{providerName}} has arrived at your location for {{serviceType}}. Please meet them to start the service.",
+    "category": "TRANSACTIONAL",
+    "variables": ["providerName", "serviceType"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service marketplace - Provider arrival"
+    }
+  },
+  {
+    "name": "Service In Progress",
+    "body": "Your {{serviceType}} service is now in progress with {{providerName}}. Need help? Contact support: {{supportPhone}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["serviceType", "providerName", "supportPhone"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service marketplace - Service started"
+    }
+  },
+  {
+    "name": "Payment Pending Service",
+    "body": "Service completed! Please pay {{amount}} to {{providerName}}. Pay now: {{paymentUrl}} or via cash. Service ID: {{serviceId}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["amount", "providerName", "paymentUrl", "serviceId"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service marketplace - Payment reminder"
+    }
+  },
+  {
+    "name": "Service Cancelled By Provider",
+    "body": "{{providerName}} cancelled your {{serviceType}} service. Reason: {{reason}}. We're finding another provider. Request: {{requestId}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["providerName", "serviceType", "reason", "requestId"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service marketplace - Provider cancellation"
+    }
+  },
+  {
+    "name": "Service Rescheduled",
+    "body": "Your {{serviceType}} service has been rescheduled to {{newDateTime}}. Provider: {{providerName}}. Confirm: {{confirmUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["serviceType", "newDateTime", "providerName", "confirmUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service marketplace - Rescheduling"
+    }
+  },
+  {
+    "name": "No Provider Available",
+    "body": "Sorry, no provider is available for {{serviceType}} in your area right now. Try again later or expand search radius: {{searchUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["serviceType", "searchUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service marketplace - No availability"
+    }
+  },
+  {
+    "name": "Provider Rating Request",
+    "body": "How was your {{serviceType}} experience with {{providerName}}? Rate now: {{ratingUrl}} and help others make better choices!",
+    "category": "TRANSACTIONAL",
+    "variables": ["serviceType", "providerName", "ratingUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service marketplace - Rating request"
+    }
+  },
+  {
+    "name": "Service Area Expanded",
+    "body": "Great news! {{serviceType}} is now available in your area ({{areaName}}). Book now: {{bookingUrl}}",
+    "category": "PROMOTIONAL",
+    "variables": ["serviceType", "areaName", "bookingUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Service marketplace - Area expansion"
+    }
+  },
+  {
+    "name": "Phone Verification",
+    "body": "Verify your phone number for {{appName}}. Code: {{verificationCode}}. Valid for {{expiry}} minutes. Don't share this code.",
+    "category": "OTP",
+    "variables": ["appName", "verificationCode", "expiry"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Phone number verification"
+    }
+  },
+  {
+    "name": "Email Change Confirmation",
+    "body": "Your email has been changed to {{newEmail}}. If you didn't make this change, secure your account immediately: {{securityUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["newEmail", "securityUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Email update notification"
+    }
+  },
+  {
+    "name": "Phone Change Confirmation",
+    "body": "Your phone number has been updated successfully. New number: {{newPhone}}. Contact support if this wasn't you: {{supportContact}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["newPhone", "supportContact"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Phone update notification"
+    }
+  },
+  {
+    "name": "Terms Updated",
+    "body": "Our Terms of Service have been updated. Review changes: {{termsUrl}}. Continued use means you accept the new terms.",
+    "category": "TRANSACTIONAL",
+    "variables": ["termsUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Policy update notification"
+    }
+  },
+  {
+    "name": "Account Deletion Scheduled",
+    "body": "Your account will be deleted on {{deletionDate}}. To cancel deletion, login before that date: {{loginUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["deletionDate", "loginUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Account deletion warning"
+    }
+  },
+  {
+    "name": "Data Export Ready",
+    "body": "Your data export is ready! Download link: {{downloadUrl}} (valid for {{validity}} hours). File size: {{fileSize}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["downloadUrl", "validity", "fileSize"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "GDPR data export"
+    }
+  },
+  {
+    "name": "Milestone Achieved",
+    "body": "Congratulations! You've achieved {{milestone}}! 🎉 Reward unlocked: {{reward}}. Claim: {{rewardUrl}}",
+    "category": "PROMOTIONAL",
+    "variables": ["milestone", "reward", "rewardUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Gamification milestone"
+    }
+  },
+  {
+    "name": "Streak Reminder",
+    "body": "Don't break your {{streakDays}}-day streak! Complete {{action}} today to keep it going: {{actionUrl}}",
+    "category": "PROMOTIONAL",
+    "variables": ["streakDays", "action", "actionUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Engagement - Streak maintenance"
+    }
+  },
+  {
+    "name": "Team Invitation",
+    "body": "{{inviterName}} invited you to join {{teamName}} on {{appName}}. Accept invitation: {{inviteUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["inviterName", "teamName", "appName", "inviteUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Team/workspace invitation"
+    }
+  },
+  {
+    "name": "File Upload Complete",
+    "body": "File {{fileName}} uploaded successfully! Size: {{fileSize}}. Access: {{fileUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["fileName", "fileSize", "fileUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "File upload confirmation"
+    }
+  },
+  {
+    "name": "Processing Complete",
+    "body": "{{taskName}} processing complete! View results: {{resultsUrl}}. Duration: {{processingTime}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["taskName", "resultsUrl", "processingTime"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Async task completion"
+    }
+  },
+  {
+    "name": "Update Available",
+    "body": "New version {{version}} of {{appName}} is available! Update now for new features: {{updateUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["version", "appName", "updateUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "App update notification"
+    }
+  },
+  {
+    "name": "Feature Announcement",
+    "body": "New feature alert! {{featureName}} is now available. Check it out: {{featureUrl}} and let us know what you think!",
+    "category": "PROMOTIONAL",
+    "variables": ["featureName", "featureUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Product updates"
+    }
+  },
+  {
+    "name": "Business Hours Change",
+    "body": "Important: Our business hours have changed. New hours: {{newHours}}. Effective from {{effectiveDate}}. Questions? {{contactUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["newHours", "effectiveDate", "contactUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Operational hours update"
+    }
+  },
+  {
+    "name": "Holiday Closure",
+    "body": "Holiday notice: We'll be closed on {{holidayDate}} for {{holidayName}}. Regular service resumes {{resumeDate}}.",
+    "category": "TRANSACTIONAL",
+    "variables": ["holidayDate", "holidayName", "resumeDate"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Holiday closure notification"
+    }
+  },
+  {
+    "name": "Weather Service Alert",
+    "body": "Weather alert: {{serviceType}} may be delayed due to {{weatherCondition}} in {{area}}. ETA updated to {{newEta}}. Track: {{trackingUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["serviceType", "weatherCondition", "area", "newEta", "trackingUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Weather-based service alert"
+    }
+  },
+  {
+    "name": "Promo Code Received",
+    "body": "You've received a promo code! Use {{promoCode}} for {{discount}} off. Valid till {{expiryDate}}. Shop: {{shopUrl}}",
+    "category": "PROMOTIONAL",
+    "variables": ["promoCode", "discount", "expiryDate", "shopUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Promo code delivery"
+    }
+  },
+  {
+    "name": "Gift Card Received",
+    "body": "You received a {{amount}} gift card! From: {{senderName}}. Code: {{giftCode}}. Redeem: {{redeemUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["amount", "senderName", "giftCode", "redeemUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Gift card notification"
+    }
+  },
+  {
+    "name": "Certificate Issued",
+    "body": "Congratulations! Your {{certificateName}} certificate is ready. Download: {{certificateUrl}} Valid till: {{validityDate}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["certificateName", "certificateUrl", "validityDate"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Certificate/credential issuance"
+    }
+  },
+  {
+    "name": "License Renewal Due",
+    "body": "Your {{licenseType}} license expires on {{expiryDate}}. Renew now to avoid interruption: {{renewalUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["licenseType", "expiryDate", "renewalUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "License/subscription renewal"
+    }
+  },
+  {
+    "name": "Membership Expiring",
+    "body": "Your {{membershipType}} membership expires in {{daysLeft}} days. Renew now for uninterrupted benefits: {{renewalUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["membershipType", "daysLeft", "renewalUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Membership expiry warning"
+    }
+  },
+  {
+    "name": "Course Enrollment",
+    "body": "You're enrolled in {{courseName}}! Starts {{startDate}}. Course materials: {{courseUrl}}. Instructor: {{instructorName}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["courseName", "startDate", "courseUrl", "instructorName"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Education - Course enrollment"
+    }
+  },
+  {
+    "name": "Class Starting Soon",
+    "body": "Your {{className}} class starts in {{minutes}} minutes! Join now: {{classUrl}}. Need help? {{supportContact}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["className", "minutes", "classUrl", "supportContact"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Education - Class reminder"
+    }
+  },
+  {
+    "name": "Assignment Due",
+    "body": "Reminder: {{assignmentName}} is due {{dueDateTime}}. Submit: {{submissionUrl}}. Questions? Contact {{instructorContact}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["assignmentName", "dueDateTime", "submissionUrl", "instructorContact"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Education - Assignment reminder"
+    }
+  },
+  {
+    "name": "Grade Published",
+    "body": "Your grade for {{courseName}} - {{assessmentName}} is now available. View: {{gradesUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["courseName", "assessmentName", "gradesUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Education - Grade notification"
+    }
+  },
+  {
+    "name": "Exam Reminder",
+    "body": "Exam alert: {{examName}} on {{examDate}} at {{examTime}}. Location: {{examLocation}}. Bring: {{requirements}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["examName", "examDate", "examTime", "examLocation", "requirements"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Education - Exam reminder"
+    }
+  },
+  {
+    "name": "Result Published",
+    "body": "Your {{examName}} results are out! View: {{resultsUrl}}. Score: {{score}}. Percentile: {{percentile}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["examName", "resultsUrl", "score", "percentile"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Education - Result announcement"
+    }
+  },
+  {
+    "name": "Review Approved",
+    "body": "Your review for {{itemName}} has been approved and is now live! Thank you for sharing your experience. View: {{reviewUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["itemName", "reviewUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Review moderation"
+    }
+  },
+  {
+    "name": "Content Moderation Alert",
+    "body": "Your {{contentType}} was flagged for review. Reason: {{reason}}. Appeal: {{appealUrl}} or edit: {{editUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["contentType", "reason", "appealUrl", "editUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Content moderation notification"
+    }
+  },
+  {
+    "name": "Saved Search Alert",
+    "body": "New match for your saved search '{{searchQuery}}'! {{matchCount}} new listings found. View: {{resultsUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["searchQuery", "matchCount", "resultsUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Saved search notifications"
+    }
+  },
+  {
+    "name": "Nearby Service Alert",
+    "body": "{{serviceType}} is available near you! Provider {{providerName}} is {{distance}} away. Book now: {{bookingUrl}}",
+    "category": "PROMOTIONAL",
+    "variables": ["serviceType", "providerName", "distance", "bookingUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Location-based service alert"
+    }
+  },
+  {
+    "name": "Reservation Confirmed",
+    "body": "Table reserved at {{restaurantName}} for {{partySize}} on {{reservationDate}} at {{reservationTime}}. Confirmation: {{confirmationCode}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["restaurantName", "partySize", "reservationDate", "reservationTime", "confirmationCode"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Restaurant/venue reservation"
+    }
+  },
+  {
+    "name": "Queue Position Update",
+    "body": "Queue update: You're now #{{position}} in line for {{serviceName}}. Estimated wait: {{waitTime}}. Track: {{trackingUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["position", "serviceName", "waitTime", "trackingUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Virtual queue management"
+    }
+  },
+  {
+    "name": "Delivery Instructions Needed",
+    "body": "Driver needs delivery instructions for order {{orderId}}. Reply with instructions or call {{driverPhone}}. Address: {{deliveryAddress}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["orderId", "driverPhone", "deliveryAddress"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Delivery clarification request"
+    }
+  },
+  {
+    "name": "SOS Alert Received",
+    "body": "EMERGENCY: SOS alert received from {{userName}} at {{location}}. Time: {{timestamp}}. Emergency contacts notified.",
+    "category": "TRANSACTIONAL",
+    "variables": ["userName", "location", "timestamp"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Emergency SOS notification"
+    }
+  },
+  {
+    "name": "Ride Sharing",
+    "body": "{{driverName}} is your driver ({{vehicleDetails}}). Pickup in {{eta}} mins at {{pickupLocation}}. Track: {{trackingUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["driverName", "vehicleDetails", "eta", "pickupLocation", "trackingUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Ride-sharing apps"
+    }
+  },
+  {
+    "name": "Trip Completed",
+    "body": "Trip completed! Total: {{amount}}. Distance: {{distance}}. Rate {{driverName}}: {{ratingUrl}} Receipt: {{receiptUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["amount", "distance", "driverName", "ratingUrl", "receiptUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Ride completion notification"
+    }
+  },
+  {
+    "name": "Bid Received",
+    "body": "New bid of {{bidAmount}} received for your {{listingName}}! Bidder: {{bidderName}}. Review: {{bidUrl}} Ends: {{auctionEnd}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["bidAmount", "listingName", "bidderName", "bidUrl", "auctionEnd"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Auction/bidding platform"
+    }
+  },
+  {
+    "name": "Outbid Notification",
+    "body": "You've been outbid on {{itemName}}! Current bid: {{currentBid}}. Bid again: {{bidUrl}} Auction ends: {{endTime}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["itemName", "currentBid", "bidUrl", "endTime"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Auction outbid alert"
+    }
+  },
+  {
+    "name": "Auction Won",
+    "body": "Congratulations! You won {{itemName}} with bid {{winningBid}}! Complete payment by {{paymentDeadline}}: {{paymentUrl}}",
+    "category": "TRANSACTIONAL",
+    "variables": ["itemName", "winningBid", "paymentDeadline", "paymentUrl"],
+    "isActive": true,
+    "dltTemplateId": "",
+    "dltEntityId": "",
+    "metadata": {
+      "useCase": "Auction win notification"
+    }
+  }
+]

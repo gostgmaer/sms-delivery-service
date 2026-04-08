@@ -7,12 +7,23 @@ const connectDB = require('./src/config/database');
 const config = require('./src/config');
 const logger = require('./src/utils/logger');
 const { startRetryWorker, stopRetryWorker } = require('./src/services/retry.service');
+const { autoImportTemplates } = require('./src/services/template-importer.service');
 
 const PORT = config.port;
 
 async function startServer() {
   try {
     await connectDB();
+    
+    // Auto-import SMS templates on startup (idempotent)
+    // Set AUTO_IMPORT_TEMPLATES=false to disable
+    const autoImport = process.env.AUTO_IMPORT_TEMPLATES !== 'false';
+    if (autoImport) {
+      await autoImportTemplates({ 
+        tenantId: config.tenant.defaultTenantId || 'default'
+      });
+    }
+    
     const server = app.listen(PORT, () => {
       logger.info(`SMS Delivery Service running`, {
         port: PORT,

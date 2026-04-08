@@ -13,9 +13,10 @@ const sendSmsRules = [
     .matches(PHONE_RE)
     .withMessage('Phone number must be E.164 or valid 10-digit Indian number'),
   body('message')
+    .if((value, { req }) => !req.body.templateId && !req.body.templateCode && !req.body.templateName)
     .trim()
     .notEmpty()
-    .withMessage('Message body is required')
+    .withMessage('Message body is required when not using a template')
     .isLength({ max: 1600 })
     .withMessage('Message must not exceed 1600 characters'),
   body('from')
@@ -36,6 +37,18 @@ const sendSmsRules = [
     .optional()
     .isMongoId()
     .withMessage('templateId must be a valid MongoDB ObjectId'),
+  body('templateCode')
+    .optional()
+    .trim()
+    .isLength({ min: 2, max: 100 })
+    .withMessage('templateCode must be 2-100 characters')
+    .matches(/^[A-Z0-9_]+$/i)
+    .withMessage('templateCode must contain only letters, numbers, and underscores'),
+  body('templateName')
+    .optional()
+    .trim()
+    .isLength({ min: 2, max: 100 })
+    .withMessage('templateName must be 2-100 characters'),
   body('variables')
     .optional()
     .isObject()

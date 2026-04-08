@@ -17,11 +17,57 @@ const DEFAULT_BATCH = 50;
 class BulkProgressEmitter extends EventEmitter {}
 const bulkProgress = new BulkProgressEmitter();
 
+/**
+ * Resolve template using code, name, or ID (priority: code > name > id)
+ */
+async function _resolveTemplate(code, name, id, tenantId) {
+  let template = null;
+  
+  if (code) {
+    // Use templateCode (recommended for cross-environment consistency)
+    template = await SmsTemplate.findOne({ 
+      code: code.toUpperCase(), 
+      tenantId,
+      isActive: true,
+      isDeleted: false
+    }).lean();
+    if (!template) {
+      throw new AppError(`Template with code "${code}" not found`, 404, 'TEMPLATE_NOT_FOUND');
+    }
+  } else if (name) {
+    // Use templateName (convenient lookup by name)
+    template = await SmsTemplate.findOne({ 
+      name: name, 
+      tenantId,
+      isActive: true,
+      isDeleted: false
+    }).lean();
+    if (!template) {
+      throw new AppError(`Template with name "${name}" not found`, 404, 'TEMPLATE_NOT_FOUND');
+    }
+  } else if (id) {
+    // Fallback to templateId (MongoDB ObjectID) for backward compatibility
+    template = await SmsTemplate.findOne({
+      _id: id,
+      tenantId,
+      isActive: true,
+      isDeleted: false
+    }).lean();
+    if (!template) {
+      throw new AppError(`Template ${id} not found`, 404, 'TEMPLATE_NOT_FOUND');
+    }
+  }
+  
+  return template;
+}
+
 async function sendBulk(payload, tenantId) {
   const {
     recipients,
     message: sharedMessage,
     templateId,
+    templateCode,
+    templateName,
     from,
     messageType = 'PROMOTIONAL',
     batchSize = DEFAULT_BATCH,
@@ -29,10 +75,10 @@ async function sendBulk(payload, tenantId) {
     dltEntityId,
   } = payload;
 
+  // Resolve template using code, name, or ID (same logic as single SMS)
   let template = null;
-  if (templateId) {
-    template = await SmsTemplate.findById(templateId).lean();
-    if (!template) throw new AppError(`Template ${templateId} not found`, 404);
+  if (templateCode || templateName || templateId) {
+    template = await _resolveTemplate(templateCode, templateName, templateId, tenantId);
   }
 
   const campaignId = uuidv4();
