@@ -1,0 +1,40 @@
+# Build artifacts
+node_modules
+npm-debug.log
+pnpm-debug.log
+yarn-error.log
+
+# Environment files
+.env
+.env.*
+!.env.sample
+
+# Documentation
+*.md
+!README.md
+docs/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Git
+.git
+.gitignore
+.github
+
+# Tests
+coverage
+*.test.js
+*.spec.js
+
+# Logs
+logs/
+*.log
+
+# Runtime
+pids/
+*.pid
+*.seed

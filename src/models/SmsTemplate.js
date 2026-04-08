@@ -3,12 +3,13 @@
 const mongoose = require('mongoose');
 
 const smsTemplateSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true, trim: true },
+  name: { type: String, required: true, trim: true },
+  code: { type: String, required: true, uppercase: true, trim: true }, // Unique, env-independent identifier
   body: { type: String, required: true },
-  messageType: {
+  category: {
     type: String,
-    enum: ['transactional', 'promotional', 'otp'],
-    default: 'transactional',
+    enum: ['TRANSACTIONAL', 'PROMOTIONAL', 'OTP'],
+    default: 'TRANSACTIONAL',
   },
   dltTemplateId: { type: String },   // TRAI DLT template ID
   dltEntityId: { type: String },     // TRAI DLT principal entity ID
@@ -20,12 +21,15 @@ const smsTemplateSchema = new mongoose.Schema({
   deletedAt:  { type: Date, default: null },
   deletedBy:  { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
   variables: [String],               // e.g. ['name', 'otp']
+  metadata: { type: Object, default: {} }, // Additional info
 }, {
   timestamps: true,
   versionKey: false,
 });
 
-smsTemplateSchema.index({ name: 1, tenantId: 1 });
+// Unique indexes for code and name per tenant
+smsTemplateSchema.index({ code: 1, tenantId: 1 }, { unique: true });
+smsTemplateSchema.index({ name: 1, tenantId: 1 }, { unique: true });
 
 const SmsTemplate = mongoose.model('SmsTemplate', smsTemplateSchema);
 module.exports = SmsTemplate;

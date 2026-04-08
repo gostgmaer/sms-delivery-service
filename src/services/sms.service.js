@@ -27,10 +27,50 @@ function _generateOtp(length = 6) {
   return otp;
 }
 
-async function _resolveMessage(payload) {
-  if (payload.templateId) {
-    const tpl = await SmsTemplate.findById(payload.templateId).lean();
-    if (!tpl) throw new AppError(`Template ${payload.templateId} not found`, 404, 'SMS_NOT_FOUND');
+async function _resolveMessage(payload, tenantId) {
+  // Support multiple ways to reference a template:
+  // 1. templateCode (recommended - env-independent)
+  // 2. templateName (convenient - auto-lookup by name)
+  // 3. templateId (backward compatible - MongoDB ObjectID)
+  
+  if (payload.templateCode || payload.templateName || payload.templateId) {
+    let tpl;
+    
+    if (payload.templateCode) {
+      // Use templateCode (recommended for cross-environment consistency)
+      tpl = await SmsTemplate.findOne({ 
+        code: payload.templateCode.toUpperCase(), 
+        tenantId,
+        isActive: true,
+        isDeleted: false
+      }).lean();
+      if (!tpl) {
+        throw new AppError(`Template with code "${payload.templateCode}" not found`, 404, 'TEMPLATE_NOT_FOUND');
+      }
+    } else if (payload.templateName) {
+      // Use templateName (convenient lookup by name)
+      tpl = await SmsTemplate.findOne({ 
+        name: payload.templateName, 
+        tenantId,
+        isActive: true,
+        isDeleted: false
+      }).lean();
+      if (!tpl) {
+        throw new AppError(`Template with name "${payload.templateName}" not found`, 404, 'TEMPLATE_NOT_FOUND');
+      }
+    } else if (payload.templateId) {
+      // Fallback to templateId (MongoDB ObjectID) for backward compatibility
+      tpl = await SmsTemplate.findOne({
+        _id: payload.templateId,
+        tenantId,
+        isActive: true,
+        isDeleted: false
+      }).lean();
+      if (!tpl) {
+        throw new AppError(`Template ${payload.templateId} not found`, 404, 'TEMPLATE_NOT_FOUND');
+      }
+    }
+    
     const rendered = render(tpl.body, payload.variables || {});
     return { message: rendered, template: tpl };
   }
@@ -39,7 +79,7 @@ async function _resolveMessage(payload) {
 
 async function sendSms(payload, tenantId) {
   const normalised = normalisePhone(payload.to);
-  const { message, template } = await _resolveMessage(payload);
+  const { message, template } = await _resolveMessage(payload, tenantId);
   const messageId = uuidv4();
 
   // Idempotency check
